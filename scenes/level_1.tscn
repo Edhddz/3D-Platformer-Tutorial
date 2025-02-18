@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://sw0lrwwmfsky"]
+[gd_scene load_steps=8 format=3 uid="uid://sw0lrwwmfsky"]
 
 [ext_resource type="PackedScene" uid="uid://4wcvjnjtiobj" path="res://Objects/block.tscn" id="1_014kd"]
 [ext_resource type="PackedScene" uid="uid://2smk0rrqj2j0" path="res://Player/steve.tscn" id="2_bswci"]
 [ext_resource type="PackedScene" uid="uid://c23blxtlgajnq" path="res://Objects/Collectibles/coin.tscn" id="3_rus8k"]
+[ext_resource type="Environment" uid="uid://bvnnvb6ctyaf6" path="res://Resources/level_1_environment.tres" id="4_5xbjy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkh53"]
+albedo_color = Color(0.175722, 0.549776, 0.640186, 1)
+roughness = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_gkh53"]
 material = SubResource("StandardMaterial3D_gkh53")
@@ -34,7 +37,6 @@ shadow_enabled = true
 
 [node name="Blocks" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0514, 0.479502, -14.3382)
-visible = false
 
 [node name="Block1" parent="Blocks" instance=ExtResource("1_014kd")]
 transform = Transform3D(0.917914, -0.396779, 0, 0.351643, 0.813496, -0.463219, 0.183796, 0.425195, 0.886244, 0, 8.69415, 0)
@@ -59,3 +61,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479502, 0)
 
 [node name="Coin" parent="." instance=ExtResource("3_rus8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.977671, 0.619901, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_5xbjy")
