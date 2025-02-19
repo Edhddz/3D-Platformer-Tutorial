@@ -33,3 +33,5 @@ transform = Transform3D(1, 0, 0, 0, 0.955772, 0.294107, 0, -0.294107, 0.955772, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916922, -0.465796)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
