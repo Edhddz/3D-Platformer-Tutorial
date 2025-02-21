@@ -66,5 +66,5 @@ func align_with_floor(floor_normal) -> void:
 	xForm.basis = xForm.basis.orthonormalized()
 
 
-func _on_death_zone_body_entered(body: Node3D) -> void:
+func _on_death_zone_body_entered(_body: Node3D) -> void:
 	get_tree().call_deferred("reload_current_scene")
