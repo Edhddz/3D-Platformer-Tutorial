@@ -12,4 +12,4 @@ func _process(_delta: float) -> void:
 	rotate_y(deg_to_rad(ROT_SPEED))
 
 func _on_body_entered(_body: Node3D) -> void:  # Built-in signal
-	queue_free()
+	$AnimationPlayer.play("bounce")
