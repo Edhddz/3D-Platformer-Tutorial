@@ -10,7 +10,7 @@ material = SubResource("StandardMaterial3D_gu13b")
 
 [node name="Block" type="RigidBody3D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gu13b")
