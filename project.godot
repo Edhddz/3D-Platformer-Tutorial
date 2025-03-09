@@ -42,3 +42,7 @@ cam_right={
 [physics]
 
 3d/default_gravity=28.0
+
+[rendering]
+
+anti_aliasing/quality/use_taa=true
