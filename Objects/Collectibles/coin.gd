@@ -1,7 +1,7 @@
 extends Area3D
 
 const ROT_SPEED: int = 2  # Number of degrees the coin rotates every frame
-@export var hud: CanvasLayer
+@export var hud: CanvasLayer  # Expose variable to the editor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

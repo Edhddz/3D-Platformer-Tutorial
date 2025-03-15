@@ -7,6 +7,16 @@ var xForm : Transform3D
 var last_floor_normal := Vector3.UP  # Store previous normal for smooth transitions
 
 func _physics_process(delta: float) -> void:
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	# Play robot animations
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		$AnimationPlayer.play("jump")
+	elif is_on_floor() and input_dir != Vector2.ZERO:
+		$AnimationPlayer.play("run")
+	elif is_on_floor() and input_dir == Vector2.ZERO:
+		$AnimationPlayer.play("idle")
 	
 	# Rotate the camera left / right
 	if Input.is_action_just_pressed("cam_left"):
@@ -23,13 +33,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
 	var direction = ($CameraController.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Rotate character to its moving direction
 	if input_dir != Vector2.ZERO:
-		$MeshInstance3D.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) - 90
+		$Armature.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) - 90
 	
 	# Update RayCast3D to follow position but keep independent rotation
 	$RayCast3D.global_position = global_position
