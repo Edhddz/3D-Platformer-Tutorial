@@ -1,14 +1,15 @@
 extends CharacterBody3D
 
-const SPEED = 3.0
+var speed = 3.0
 @export var direction := Vector3(0, 0, 0)
 const turning_time := 0.6
 var is_turning := false  # Prevent multiple rotations
+var is_dead := false
 const rotation_amount := Vector3(0, 180, 0)
 
 func _physics_process(delta: float) -> void:
-	velocity.x = SPEED * direction.x
-	velocity.z = SPEED * direction.z
+	velocity.x = speed * direction.x
+	velocity.z = speed * direction.z
 
 	# Add gravity
 	if not is_on_floor():
@@ -17,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# Only turn if not already turning
-	if is_on_wall() and not is_turning:
+	if is_on_wall() and not is_turning and not is_dead:
 		await turn_around()
 
 func turn_around() -> void:
@@ -32,3 +33,22 @@ func turn_around() -> void:
 	direction = -direction
 
 	is_turning = false  # Allow turning again, prevents a bug where the enemy turns twice and then stops moving when lowering SPEED
+
+
+func _on_sides_checker_body_entered(_body: Node3D) -> void:
+	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+
+func disable_enemy_collision() -> void:
+	$SidesChecker.set_collision_mask_value(1, false)
+	$TopChecker.set_collision_mask_value(1, false)
+
+func _on_top_checker_body_entered(body: Node3D) -> void:
+	is_dead = true
+	direction = Vector3.ZERO
+	speed = 0
+	
+	$AnimationPlayer.play("squash")
+	body.bounce()
+	disable_enemy_collision()
+	await get_tree().create_timer(1.0)
+	queue_free()

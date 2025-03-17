@@ -77,3 +77,7 @@ func align_with_floor(floor_normal) -> void:
 
 func _on_death_zone_body_entered(_body: Node3D) -> void:
 	get_tree().call_deferred("reload_current_scene")
+
+
+func bounce() -> void:
+	velocity.y = JUMP_VELOCITY * 0.7
