@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://sw0lrwwmfsky"]
+[gd_scene load_steps=10 format=3 uid="uid://sw0lrwwmfsky"]
 
 [ext_resource type="PackedScene" uid="uid://4wcvjnjtiobj" path="res://Objects/block.tscn" id="1_014kd"]
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_go2nx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Environment" uid="uid://bvnnvb6ctyaf6" path="res://Resources/level_1_environment.tres" id="4_5xbjy"]
 [ext_resource type="MeshLibrary" uid="uid://dh4jm2uldrh84" path="res://Resources/world-blocks-v1.tres" id="5_4nkto"]
 [ext_resource type="PackedScene" uid="uid://c38asxr0bmor5" path="res://scenes/hud.tscn" id="7_ack7s"]
+[ext_resource type="PackedScene" uid="uid://d1f6hjder4jhi" path="res://Enemies/enemy.tscn" id="8_wxbky"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4nkto"]
 size = Vector3(10.083, 1, 8.82227)
@@ -89,5 +90,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02233, 0.619901, 4)
 hud = NodePath("../../HUD")
 
 [node name="HUD" parent="." instance=ExtResource("7_ack7s")]
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_wxbky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 2, -9)
+direction = Vector3(1, 0, 0)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("8_wxbky")]
+transform = Transform3D(1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 19, 2, -5)
+direction = Vector3(-1, 0, 0)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("8_wxbky")]
+transform = Transform3D(1, 0, 1.62921e-07, 0, 1, 0, -1.62921e-07, 0, 1, 5, -8, -25)
+direction = Vector3(0, 0, 1)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("8_wxbky")]
+transform = Transform3D(-1, 0, -2.50343e-07, 0, 1, 0, 2.50343e-07, 0, -1, 5, 0, -5)
+direction = Vector3(0, 0, -1)
 
 [connection signal="body_entered" from="DeathZone" to="Steve" method="_on_death_zone_body_entered"]
